@@ -1,7 +1,5 @@
+import MainLayout from "./layouts/MainLayout";
+
 export default function App() {
-  return (
-    <div>
-      <h1 class="text-3xl font-bold underline">Hello world!</h1>
-    </div>
-  );
+  return <MainLayout></MainLayout>;
 }
