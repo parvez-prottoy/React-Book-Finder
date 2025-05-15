@@ -1,7 +1,12 @@
 import SearchBook from "./SearchBook";
 import SortBy from "./SortBy";
 
-export default function Banner({ searchTerm, handleSearch }) {
+export default function Banner({
+  searchTerm,
+  handleSearch,
+  sortBy,
+  handleSort,
+}) {
   const currentYear = new Date().getFullYear();
   return (
     <section className="mb-8 lg:mb-10 mx-auto max-w-7xl">
@@ -16,7 +21,7 @@ export default function Banner({ searchTerm, handleSearch }) {
 
           <SearchBook searchTerm={searchTerm} handleSearch={handleSearch} />
         </div>
-        <SortBy />
+        <SortBy sortBy={sortBy} handleSort={handleSort} />
       </div>
     </section>
   );
