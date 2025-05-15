@@ -1,9 +1,17 @@
 import star from "../../assets/star.svg";
 import Favourite from "../shared/SVG/Favourite";
 import Unfavourite from "../shared/SVG/Unfavourite";
-export default function BookGridItem({ book }) {
-  const { name, author, thumbnail, price, rating, favourite, publishedYear } =
-    book;
+export default function BookGridItem({ book, handleFavorite }) {
+  const {
+    id,
+    name,
+    author,
+    thumbnail,
+    price,
+    rating,
+    favourite,
+    publishedYear,
+  } = book;
   return (
     <div className="space-y-3">
       <div className="flex items-center justify-center rounded-md border border-[#324251]/30 bg-white p-4">
@@ -34,7 +42,7 @@ export default function BookGridItem({ book }) {
 
         <div className="text-xs lg:text-sm">
           <button
-            // onClick={() => handleFav(id)}
+            onClick={() => handleFavorite(id)}
             className={`flex min-w-[132px] w-full items-center justify-center gap-1 rounded-md  transition-all py-1.5 lg:py-1.5 cursor-pointer ${
               favourite
                 ? "bg-[#DC2954]/[14%]  text-[#DC2954] hover:bg-[#DC2954]/[24%]"

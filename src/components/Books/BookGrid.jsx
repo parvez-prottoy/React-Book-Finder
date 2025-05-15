@@ -3,7 +3,7 @@ import booksData from "../../db/booksData";
 import BookGridItem from "./BookGridItem";
 
 export default function BookGrid({ searchTerm, sortBy }) {
-  const [books] = useState(booksData);
+  const [books, setBooks] = useState(booksData);
   // Filter by search
   const filterBySearch = (book) => {
     if (searchTerm !== "") {
@@ -36,13 +36,30 @@ export default function BookGrid({ searchTerm, sortBy }) {
         return 0;
     }
   };
+  // handle favorite
+  const handleFavorite = (bookId) => {
+    const updatedBooks = books.map((book) => {
+      if (book.id === bookId) {
+        return {
+          ...book,
+          favourite: !book.favourite,
+        };
+      }
+      return book;
+    });
+    setBooks(updatedBooks);
+  };
   return (
     <section className="container mx-auto grid grid-cols-1 gap-8 max-w-7xl md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {books
         .filter(filterBySearch)
         .sort(sortByNameYear)
         .map((book) => (
-          <BookGridItem key={book.id} book={book} />
+          <BookGridItem
+            key={book.id}
+            book={book}
+            handleFavorite={handleFavorite}
+          />
         ))}
     </section>
   );
